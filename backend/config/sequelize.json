@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "sylvain",
+    "password": "haocjvbe",
+    "database": "gym",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}

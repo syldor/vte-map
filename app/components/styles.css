@@ -1,0 +1,25 @@
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+body { 
+    background: url(img/running.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+
+.panel {
+    background-color: #F5A458;
+}
+
+
+.info-label {
+	padding-right: 5em;
+}
+
+.info-input {
+	
+}
