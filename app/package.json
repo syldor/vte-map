@@ -10,13 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.4",
     "leaflet": "^0.7.7",
     "leaflet-draw": "^0.3.0",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-redux": "^4.4.5",
-    "redux": "^1.0.0-rc"
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.2.1",
+    "redux": "^3.2.1",
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "redux-devtools": "^3.3.1"

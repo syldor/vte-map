@@ -7,6 +7,7 @@ exports.get_gyms = function(req, res) {
 }
 
 exports.add_gym = function(req, res) {
+	console.log(req);
 	models.gyms.build(req.body).save().then(function() {
 		res.status(200).end();
 	});

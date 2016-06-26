@@ -2,7 +2,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack')
 
 module.exports = {
-    entry: "./app/components/index.jsx",
+    entry: "./app/index.jsx",
     output: {
         path: __dirname + "/app/build/",
         filename: "index-bundle.js"
@@ -20,6 +20,7 @@ module.exports = {
             { test: /\.css$/, loader: "style!css" },  
             {
                 test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
                 loaders: ['babel'],
             }, { 
                 test: /\.(png|jpg)$/, loader: "file-loader?name=images/[name].[ext]"
