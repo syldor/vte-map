@@ -1,24 +1,28 @@
-import { ACTIVATE_ADD_MODE, ACTIVATE_VIZ_MODE } from '../constants/ActionTypes'
+import { ACTIVATE_ADD_MODE, 
+         ACTIVATE_VIZ_MODE, 
+         REQUEST_GYMS, 
+         UPDATE_NEW_GYM_COORD, 
+         SEND_ADD_GYM, 
+         ACTIVATE_ADD_COMMENT_MODE,
+         DISPLAY_GYM_INFO,
+         RECEIVE_GYMS,
+         RECEIVE_COMMENTS } from '../constants/ActionTypes'
+
 import fetch from 'isomorphic-fetch'
 
-
 export function switchToAdd() {
-  return { type: ACTIVATE_ADD_MODE,  mode: "ADD"}
+  return { type: ACTIVATE_ADD_MODE}
 }
 
 export function switchToViz() {
-  return { type: ACTIVATE_VIZ_MODE,  mode: "VIZ"}
+  return { type: ACTIVATE_VIZ_MODE}
 }
-
-export const REQUEST_GYMS = 'REQUEST_GYMS'
 
 export function requestGyms() {
   return {
     type: REQUEST_GYMS
   }
 }
-
-export const DISPLAY_GYM_INFO = 'DISPLAY_GYM_INFO'
 
 export function displayGymInfos(gym) {
   return {
@@ -27,15 +31,12 @@ export function displayGymInfos(gym) {
   }
 }
 
-export const RECEIVE_GYMS = 'RECEIVE_GYMS'
-
 export function receiveGyms(json) {
   return {
     type: RECEIVE_GYMS,
     gyms: json
   }
 }
-
 
 
 export function fetchGyms() {
@@ -48,7 +49,6 @@ export function fetchGyms() {
   }
 }
 
-export const UPDATE_NEW_GYM_COORD = 'UPDATE_NEW_GYM_COORD'
 
 export function updateNewGymCoord(coord) {
   return {
@@ -56,8 +56,6 @@ export function updateNewGymCoord(coord) {
     data: coord
   }
 }
-
-export const SEND_ADD_GYM = 'SEND_ADD_GYM'
 
 
 export function addGym(body) {
@@ -72,6 +70,49 @@ export function addGym(body) {
       body: JSON.stringify(body)
     }).then(() => {
       dispatch(fetchGyms());
+    })
+  }
+}
+
+
+export function switchToAddComment() {
+  return { type: ACTIVATE_ADD_COMMENT_MODE}
+}
+
+export function receiveComments(json) {
+  return {
+    type: RECEIVE_COMMENTS,
+    data: json
+  }
+}
+
+export function fetchComments(gid) {
+  if(gid) {
+    return function(dispatch) {
+      return fetch('/api/comments/' + gid).then(response => response.json()).then(json => {
+        dispatch(receiveComments(json));
+       });
+    }
+  }
+  else {
+    return function(dispatch) {
+      return dispatch(receiveComments());
+    }
+  }
+}
+
+export function addComment(body) {
+  return function(dispatch) {
+    dispatch(switchToViz());
+    return fetch('/api/comments/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then(() => {
+      dispatch(fetchComments(body.gym_id));
     })
   }
 }

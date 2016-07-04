@@ -11,6 +11,12 @@ var Infos = React.createClass({
             <InfosPanel infos={this.props.selected_infos}/>
           </div>
       )
+      case "ADD_COMMENT":
+        return (
+          <div>
+            <InfosPanel infos={this.props.selected_infos}/>
+          </div>
+      )
       case "ADD":
         return (
           <InfosForm new_gym_coord={this.props.new_gym_coord}

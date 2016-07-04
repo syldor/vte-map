@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux'
 import DynaMap from '../components/DynaMap'
-import {fetchGyms, displayGymInfos, updateNewGymCoord} from '../actions/actions.js'
+import {fetchGyms, displayGymInfos, updateNewGymCoord, fetchComments} from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +15,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onMarkerClick: (infos) => {
       dispatch(displayGymInfos(infos));
+      dispatch(fetchComments(infos.id));
+    },
+    onMapClick: () => {
+      dispatch(displayGymInfos({}));
+      dispatch(fetchComments());
     },
     onMarkerCreated: (coord) => {
       dispatch(updateNewGymCoord(coord));
@@ -34,6 +39,7 @@ var GymMap = React.createClass({
     return <DynaMap markers={this.props.gyms} 
                     onMarkerClick={this.props.onMarkerClick} 
                     onMarkerCreated={this.props.onMarkerCreated}
+                    onMapClick={this.props.onMapClick}
                     mode={this.props.mode}/>
   }
 })

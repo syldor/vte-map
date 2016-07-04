@@ -16,7 +16,8 @@ const initialState = {
   mode: "VIZ",
   gyms: [],
   selected_infos: {},
-  new_gym_coord: {}
+  new_gym_coord: {},
+  comments_list: [] 
 }
 
 let store = createStore(

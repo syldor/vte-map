@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux'
 import { ACTIVATE_ADD_MODE, ACTIVATE_VIZ_MODE } from '../constants/ActionTypes'
-import { RECEIVE_GYMS, DISPLAY_GYM_INFO, UPDATE_NEW_GYM_COORD } from '../actions/actions'
+import { RECEIVE_GYMS, DISPLAY_GYM_INFO, UPDATE_NEW_GYM_COORD, ACTIVATE_ADD_COMMENT_MODE, RECEIVE_COMMENTS } from '../constants/ActionTypes'
 
 
 function mode(state = "VIZ", action) {
 	switch(action.type) {
 		case ACTIVATE_ADD_MODE:
-			return action.mode;
+			return "ADD";
 		case ACTIVATE_VIZ_MODE:
-			return action.mode;
+			return "VIZ";
+		case ACTIVATE_ADD_COMMENT_MODE:
+			return "ADD_COMMENT"
 		default:
 			return state;
 	}
@@ -41,11 +43,21 @@ function new_gym_coord(state = {}, action) {
 	}
 }
 
+function comments_list(state=[], action) {
+  switch (action.type) {
+    case RECEIVE_COMMENTS:
+      return action.data || [];
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
 	mode,
 	selected_infos,
 	gyms,
-	new_gym_coord
+	new_gym_coord,
+	comments_list
 })
 
 

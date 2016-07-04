@@ -4,11 +4,15 @@ require("leaflet_draw_css");
 import L from 'leaflet';
 import Draw from 'leaflet-draw';
 L.Icon.Default.imagePath = "./images";
+require('./img/gym.png')
 
 var DynaMap = React.createClass({
   componentDidMount: function() {
-    var {onMarkerCreated} = this.props;
+    var {onMarkerCreated, onMapClick} = this.props;
     var map = L.map("map").setView([17.96, 102.60], 12);
+    map.on('click', function(e) {
+      onMapClick();
+    });
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     }).addTo(map);
     var db_gyms_layer = L.featureGroup().addTo(map);
@@ -60,14 +64,21 @@ var DynaMap = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     var { onMarkerClick, markers, mode, onMarkerCreated } = nextProps;
     var {map, drawControl, drawnItems, db_gyms_layer} = this.state;
-
+    var gym_icon = L.icon({
+          iconUrl: './images/gym.png',
+          iconSize: [22, 20],
+          iconAnchor: [11, 10],
+          popupAnchor: [0, 0]
+        });
     if(markers) {
       db_gyms_layer.clearLayers();
       markers.forEach(function(gym) {
         L.marker([gym.latitude, gym.longitude], {infos: gym})
         .on('click', function(e) {
           onMarkerClick(e.target.options.infos);
+          e.originalEvent.stopPropagation();
         })
+        .setIcon(gym_icon)
         .addTo(db_gyms_layer);
       });
       this.setState({db_gyms_layer});
@@ -125,7 +136,7 @@ var DynaMap = React.createClass({
           drawnItems
         });
       }
-      else if(nextProps.mode == 'VIZ') {
+      else if(this.props.mode == 'ADD' && nextProps.mode == 'VIZ') {
         map.removeControl(drawControl);
         map.removeLayer(drawnItems);
       }

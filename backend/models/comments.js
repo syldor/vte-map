@@ -1,26 +1,24 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var gyms = sequelize.define("gyms", {
+  var comments = sequelize.define("comments", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    address: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    longitude: DataTypes.FLOAT,
-    latitude: DataTypes.FLOAT
+    gym_id: DataTypes.INTEGER,
+    content: DataTypes.TEXT,
+    validated: DataTypes.BOOLEAN
   }, {
     classMethods: {
       associate: function(models) {
-        gyms.hasMany(models.comments, {
+        comments.belongsTo(models.gyms, {
           foreignKey: 'gym_id'
-        });
+        });    
       }
     }
   });
 
-  return gyms;
+  return comments;
 };
