@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     address: DataTypes.STRING,
     price: DataTypes.INTEGER,
+    price_month: DataTypes.INTEGER,
+    price_6month: DataTypes.INTEGER,
+    price_year: DataTypes.INTEGER,
+    infos: DataTypes.TEXT,
     longitude: DataTypes.FLOAT,
     latitude: DataTypes.FLOAT
   }, {

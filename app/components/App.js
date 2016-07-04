@@ -52,6 +52,9 @@ var App = React.createClass({
               </div>
               <div className="row">
                 <div className="panel panel-default">
+                  <div className="panel-heading">
+                    <h3 className="panel-title">Comments</h3>
+                  </div>
                   <div className="panel-body">
                     <CommentsContainer/>
                   </div>

@@ -15,6 +15,10 @@ body {
     background-color: #F5A458;
 }
 
+.panel-default > .panel-heading {
+    background-color: #B46316;
+    color: #FFD3AA;
+}
 
 .info-label {
 	padding-right: 5em;
