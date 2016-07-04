@@ -3,6 +3,7 @@ import GymMap from '../components/GymMap'
 import InfosSection from '../components/InfosSection'
 import AddButton from '../components/AddButton'
 import CommentsContainer from '../components/CommentsContainer'
+import LanguageSelector from '../components/LanguageSelector'
 import { connect } from 'react-redux'
 import { switchToAdd } from '../actions/actions'
 
@@ -36,6 +37,7 @@ var App = React.createClass({
             <div className="navbar-header">
                 <a className="navbar-brand" href="#">Home</a>
             </div>
+            <LanguageSelector/>
         </div>
         <div className="container">
           <div className="row">

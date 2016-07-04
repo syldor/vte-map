@@ -1,5 +1,6 @@
 import React from 'react';
 import AddButton from '../components/AddButton'
+import InfosPanel from '../components/InfosPanel'
 
 
 var Infos = React.createClass({
@@ -27,20 +28,6 @@ var Infos = React.createClass({
       default:
         return null;
     }
-  }
-});
-
-var InfosPanel = React.createClass({
-  render: function() {
-    return (
-      <ul className="list-group">
-        <li className="list-group-item"><span className="info-label">Name</span> {this.props.infos.name}</li>
-        <li className="list-group-item"><span className="info-label">Price</span> {this.props.infos.price}</li>
-        <li className="list-group-item"><span className="info-label">Price 6 months</span> {this.props.infos.price_6month}</li>
-        <li className="list-group-item"><span className="info-label">Price 1 year</span> {this.props.infos.price_year}</li>
-        <li className="list-group-item">{this.props.infos.infos}</li>
-      </ul>
-      )
   }
 });
 

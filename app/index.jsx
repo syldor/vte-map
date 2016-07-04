@@ -1,5 +1,6 @@
 require('bootstrap_css');
 require("./styles.css");
+require("./node_modules/bootstrap/dist/js/bootstrap.min.js");
 
 import React from 'react';
 import ReactDOM from 'react-dom';
