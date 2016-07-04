@@ -6,6 +6,7 @@ import CommentsContainer from '../components/CommentsContainer'
 import LanguageSelector from '../components/LanguageSelector'
 import { connect } from 'react-redux'
 import { switchToAdd } from '../actions/actions'
+import translate from './translate';
 
 
 
@@ -35,7 +36,7 @@ var App = React.createClass({
       <div>
         <div className="navbar navbar-default">
             <div className="navbar-header">
-                <a className="navbar-brand" href="#">Home</a>
+                <a className="navbar-brand" href="#">{this.props.strings["Home"]}</a>
             </div>
             <LanguageSelector/>
         </div>
@@ -55,7 +56,7 @@ var App = React.createClass({
               <div className="row">
                 <div className="panel panel-default">
                   <div className="panel-heading">
-                    <h3 className="panel-title">Comments</h3>
+                    <h3 className="panel-title">{this.props.strings["Comments"]}</h3>
                   </div>
                   <div className="panel-body">
                     <CommentsContainer/>
@@ -75,7 +76,7 @@ var App = React.createClass({
   }
 });
 
-export default connect(
+export default translate('App')(connect(
           mapStateToProps,
           mapDispatchToProps
-        )(App)
+        )(App))

@@ -1,5 +1,9 @@
 // en.js
 export default {
+	App: {
+		"Home": "Home",
+		"Comments": "Comments"
+	},
     InfosPanel: {
         "Name": 'Name',
         "Price": 'Price',

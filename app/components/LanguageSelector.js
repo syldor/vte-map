@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { languages } from '../constants/Languages'
+import { setLanguage } from '../actions/actions'
 import React from 'react';
 
 const mapStateToProps = (state) => {
@@ -10,23 +11,30 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setLanguage: () => {
-      dispatch(switchToAdd())
+    setLanguage: (language) => {
+      console.log(language)
+      dispatch(setLanguage(language))
     }
   }
 }
 
 var LanguageSelector = React.createClass({
+  handleClick: function(e) {
+    var language = e.currentTarget.name;
+    this.props.setLanguage(language);
+  },
   render: function() {
+    var country_class = 'flag_' + this.props.language;
+    var flag_class = 'flag';
+    var classnames = [flag_class, country_class];
     return (
-		<div className="dropdown">
-		  <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-		    Dropdown
-		    <span className="caret"></span>
-		  </button>
-		  <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-		    <li><a href="#">Action</a></li>
-		    <li><a href="#">Another action</a></li>
+		<div className="dropdown language-dropdown">
+      <a href="javascript:;" className="dropdown-toggle active-flag" id="languageDropdown" data-toggle="dropdown">
+          <div className={classnames.join(' ')}></div>
+      </a>
+		  <ul className="dropdown-menu" aria-labelledby="languageDropdown">
+		    <li><a href="#" name="en" data-value="en" onClick={this.handleClick}><div className="flag flag_en"></div></a></li>
+		    <li><a href="#" name="la" data-value="la" onClick={this.handleClick}><div className="flag flag_la"></div></a></li>
 		  </ul>
 		</div>
     	)

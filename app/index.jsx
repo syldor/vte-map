@@ -1,6 +1,6 @@
 require('bootstrap_css');
-require("./styles.css");
 require("./node_modules/bootstrap/dist/js/bootstrap.min.js");
+require("./styles.css");
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,7 +18,8 @@ const initialState = {
   gyms: [],
   selected_infos: {},
   new_gym_coord: {},
-  comments_list: [] 
+  comments_list: [],
+  language: 'en' 
 }
 
 let store = createStore(

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { ACTIVATE_ADD_MODE, ACTIVATE_VIZ_MODE } from '../constants/ActionTypes'
-import { RECEIVE_GYMS, DISPLAY_GYM_INFO, UPDATE_NEW_GYM_COORD, ACTIVATE_ADD_COMMENT_MODE, RECEIVE_COMMENTS } from '../constants/ActionTypes'
+import { RECEIVE_GYMS, DISPLAY_GYM_INFO, UPDATE_NEW_GYM_COORD, ACTIVATE_ADD_COMMENT_MODE, RECEIVE_COMMENTS, SET_LANGUAGE } from '../constants/ActionTypes'
 
 
 function mode(state = "VIZ", action) {
@@ -52,12 +52,22 @@ function comments_list(state=[], action) {
   }
 }
 
+function language(state='en', action) {
+  switch (action.type) {
+    case SET_LANGUAGE:
+      return action.language || 'en';
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
 	mode,
 	selected_infos,
 	gyms,
 	new_gym_coord,
-	comments_list
+	comments_list,
+	language
 })
 
 

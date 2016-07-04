@@ -6,7 +6,8 @@ import { ACTIVATE_ADD_MODE,
          ACTIVATE_ADD_COMMENT_MODE,
          DISPLAY_GYM_INFO,
          RECEIVE_GYMS,
-         RECEIVE_COMMENTS } from '../constants/ActionTypes'
+         RECEIVE_COMMENTS,
+         SET_LANGUAGE } from '../constants/ActionTypes'
 
 import fetch from 'isomorphic-fetch'
 
@@ -116,4 +117,10 @@ export function addComment(body) {
     })
   }
 }
+
+export function setLanguage(language) {
+  return { type: SET_LANGUAGE, language}
+}
+
+
 
