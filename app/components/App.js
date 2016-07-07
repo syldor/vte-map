@@ -4,6 +4,7 @@ import InfosSection from '../components/InfosSection'
 import AddButton from '../components/AddButton'
 import CommentsContainer from '../components/CommentsContainer'
 import LanguageSelector from '../components/LanguageSelector'
+import HoursFormContainer from '../components/HoursFormContainer'
 import { connect } from 'react-redux'
 import { switchToAdd } from '../actions/actions'
 import translate from './translate';
@@ -29,8 +30,13 @@ const mapStateToProps = (state) => {
 var App = React.createClass({
   render: function() {
     var add_button_hidden = true;
+    var hoursComponent;
+    var AddButtonComponent;
     if(this.props.mode == 'VIZ') {
-      add_button_hidden = false;
+      AddButtonComponent = <AddButton onClick={this.props.switchToAdd}/>
+    }
+    if(this.props.mode == 'ADD') {
+      hoursComponent = <HoursFormContainer/>
     }
     return (
       <div>
@@ -44,6 +50,8 @@ var App = React.createClass({
           <div className="row">
             <div className="col-md-8">
               <GymMap/>
+              {AddButtonComponent}
+              {hoursComponent}
             </div>
             <div className="col-md-4">
               <div className="row">
@@ -54,22 +62,11 @@ var App = React.createClass({
                 </div>
               </div>
               <div className="row">
-                <div className="panel panel-default">
-                  <div className="panel-heading">
-                    <h3 className="panel-title">{this.props.strings["Comments"]}</h3>
-                  </div>
-                  <div className="panel-body">
-                    <CommentsContainer/>
-                  </div>
-                </div>
+                <CommentsContainer/>
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-8">
-              <AddButton onClick={this.props.switchToAdd} hidden={add_button_hidden}/>
-            </div>
-          </div>
+          
         </div>
       </div>
       )

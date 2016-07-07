@@ -21,7 +21,8 @@ var CommentsForm = React.createClass({
         <FormButtons addComment={this.props.addComment} 
         						content={this.state.content} 
         						gid={this.props.gid} 
-        						switchToViz={this.props.switchToViz}/>
+        						switchToViz={this.props.switchToViz}
+                    language={this.props.language}/>
       </div>
       )
   }
@@ -31,7 +32,8 @@ var FormButtons = React.createClass({
   submit: function() {
     var body = {
       gym_id: this.props.gid,
-      content: this.props.content      
+      content: this.props.content,
+      language: this.props.language      
     }
     this.props.addComment(body);
   },

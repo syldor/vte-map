@@ -22,6 +22,9 @@ module.exports = function(sequelize, DataTypes) {
         gyms.hasMany(models.comments, {
           foreignKey: 'gym_id'
         });
+        gyms.hasMany(models.hours, {
+          foreignKey: 'gym_id'
+        });
       }
     }
   });

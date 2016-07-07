@@ -1,13 +1,15 @@
 import { connect } from 'react-redux'
 import CommentsPanel from '../components/CommentsPanel'
 import { switchToAddComment, addComment, switchToViz } from '../actions/actions'
+import translate from './translate';
 
 
 const mapStateToProps = (state) => {
   return {
     comments_list: state.comments_list,
     mode: state.mode,
-    gid: state.selected_infos.id
+    gid: state.selected_infos.id,
+    language: state.language
   }
 }
 
@@ -30,4 +32,4 @@ const CommentsContainer = connect(
   mapDispatchToProps
 )(CommentsPanel)
 
-export default CommentsContainer
+export default translate('CommentsContainer')(CommentsContainer)

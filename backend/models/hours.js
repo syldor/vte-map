@@ -1,25 +1,26 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var comments = sequelize.define("comments", {
+  var hours = sequelize.define("hours", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     gym_id: DataTypes.INTEGER,
-    content: DataTypes.TEXT,
-    language: DataTypes.STRING,
-    validated: DataTypes.BOOLEAN
+    day: DataTypes.INTEGER,
+    time_open: DataTypes.TIME,
+    time_close: DataTypes.TIME,
+    holiday: DataTypes.BOOLEAN
   }, {
     classMethods: {
       associate: function(models) {
-        comments.belongsTo(models.gyms, {
+        hours.belongsTo(models.gyms, {
           foreignKey: 'gym_id'
         });    
       }
     }
   });
 
-  return comments;
+  return hours;
 };

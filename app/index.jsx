@@ -16,8 +16,11 @@ import thunkMiddleware from 'redux-thunk'
 const initialState = {
   mode: "VIZ",
   gyms: [],
-  selected_infos: {},
+  selected_infos: {
+    hours: []
+  },
   new_gym_coord: {},
+  new_gym_hours:[],
   comments_list: [],
   language: 'en' 
 }

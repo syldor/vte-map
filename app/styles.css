@@ -47,3 +47,39 @@ body {
 .dropdown-menu {
     min-width: 0px !important;
 }
+
+.hours-form > ul {
+  list-style-type: none;
+}
+
+.timepicker-input {
+  width: 100%;
+}
+
+.hours-form-day {
+  width: 14%;
+  display: inline-block;
+}
+
+.li-hours-selector {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.selectors-group {
+  margin: auto;
+  width: 90%;
+}
+
+.hours-selector {
+  margin: 1px;
+}
+
+.hours-selector-day {
+  text-align: center;
+}
+
+.hours-selector-open {
+  margin: auto;
+}
+

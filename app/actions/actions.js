@@ -7,7 +7,8 @@ import { ACTIVATE_ADD_MODE,
          DISPLAY_GYM_INFO,
          RECEIVE_GYMS,
          RECEIVE_COMMENTS,
-         SET_LANGUAGE } from '../constants/ActionTypes'
+         SET_LANGUAGE,
+         NEW_GYM_HOURS } from '../constants/ActionTypes'
 
 import fetch from 'isomorphic-fetch'
 
@@ -122,5 +123,7 @@ export function setLanguage(language) {
   return { type: SET_LANGUAGE, language}
 }
 
-
+export function updateNewGymHours(new_gym_hours) {
+  return { type: NEW_GYM_HOURS, new_gym_hours}
+}
 

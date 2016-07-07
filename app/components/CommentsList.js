@@ -8,10 +8,15 @@ var CommentsList = React.createClass({
     if(this.props.gid) {
       hide_button = false;
     }
+    var language = this.props.language;
     return (
       <div>
         <ul className="list-group">
-          {this.props.comments_list.map((comment, i) =>
+          {this.props.comments_list.filter((function(comment) {
+            if(comment.language == language) {
+              return comment;
+            }
+          }).bind(this)).map((comment, i) =>
             <li className="list-group-item" key={i}>{comment.content}</li>
           )}
         </ul>

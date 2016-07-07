@@ -21,6 +21,7 @@ var Infos = React.createClass({
       case "ADD":
         return (
           <InfosForm new_gym_coord={this.props.new_gym_coord}
+                     new_gym_hours={this.props.new_gym_hours}
                      switchToViz={this.props.switchToViz}
                      set_infos={this.props.set_infos}
                      addGym={this.props.addGym}/>
@@ -49,6 +50,7 @@ var InfosForm = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     var data = this.state.data;
     data.coords = nextProps.new_gym_coord;
+    data.new_gym_hours = nextProps.new_gym_hours;
     this.setState({
       data: data
     });
@@ -96,7 +98,8 @@ var FormButtons = React.createClass({
       price_year: this.props.data.price_year,
       infos: this.props.data.infos,
       longitude: this.props.data.coords.lng,
-      latitude: this.props.data.coords.lat      
+      latitude: this.props.data.coords.lat,
+      new_gym_hours: this.props.data.new_gym_hours    
     }
     this.props.addGym(body);
   },
