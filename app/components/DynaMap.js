@@ -3,8 +3,11 @@ require("leaflet_css");
 require("leaflet_draw_css");
 import L from 'leaflet';
 import Draw from 'leaflet-draw';
+
 L.Icon.Default.imagePath = "./images";
 require('./img/gym.png')
+require("../node_modules/leaflet/dist/images/marker-icon.png");
+require("../node_modules/leaflet/dist/images/marker-shadow.png");
 
 var DynaMap = React.createClass({
   componentDidMount: function() {
@@ -12,6 +15,7 @@ var DynaMap = React.createClass({
     var map = L.map("map").setView([17.96, 102.60], 12);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     }).addTo(map);
+
     var db_gyms_layer = L.featureGroup().addTo(map);
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
