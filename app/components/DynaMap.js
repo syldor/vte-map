@@ -3,6 +3,7 @@ require("leaflet_css");
 require("leaflet_draw_css");
 import L from 'leaflet';
 import Draw from 'leaflet-draw';
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_PROJECT_ID } from '../keys'
 
 L.Icon.Default.imagePath = "./images";
 require('./img/gym.png')
@@ -13,7 +14,13 @@ var DynaMap = React.createClass({
   componentDidMount: function() {
     var {onMarkerCreated, onMapClick} = this.props;
     var map = L.map("map").setView([17.96, 102.60], 12);
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // }).addTo(map);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/' + MAPBOX_PROJECT_ID + '/{z}/{x}/{y}.png?access_token=' + MAPBOX_ACCESS_TOKEN, {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: MAPBOX_PROJECT_ID,
+        accessToken: MAPBOX_ACCESS_TOKEN
     }).addTo(map);
 
     var db_gyms_layer = L.featureGroup().addTo(map);

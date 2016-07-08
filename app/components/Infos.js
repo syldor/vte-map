@@ -90,24 +90,45 @@ var InfosForm = React.createClass({
 });
 
 var FormButtons = React.createClass({
-  submit: function() {
-    var body = {
-      name: this.props.data.name,
-      price: this.props.data.price,
-      price_6month: this.props.data.price_6month,
-      price_year: this.props.data.price_year,
-      infos: this.props.data.infos,
-      longitude: this.props.data.coords.lng,
-      latitude: this.props.data.coords.lat,
-      new_gym_hours: this.props.data.new_gym_hours    
+  getInitialState: function() {
+    return {
+      message: ""
     }
-    this.props.addGym(body);
+  },
+  submit: function() {
+    if(!this.props.data.coords) {
+      this.setState({
+        message: "Please set a location on the map."
+      });
+    }
+    else if(!this.props.data.name) {
+      this.setState({
+        message: "Please give a name."
+      });
+    }
+    else {
+      var body = {
+        name: this.props.data.name,
+        price: this.props.data.price,
+        price_6month: this.props.data.price_6month,
+        price_year: this.props.data.price_year,
+        infos: this.props.data.infos,
+        longitude: this.props.data.coords.lng,
+        latitude: this.props.data.coords.lat,
+        new_gym_hours: this.props.data.new_gym_hours    
+      }
+      this.setState({
+        message: ""
+      })
+      this.props.addGym(body);      
+    }
   },
   render: function() {
     return (
       <div>
         <button className="btn btn-default" onClick={this.props.switchToViz}>Cancel</button>
         <button className="btn btn-success pull-right" onClick={this.submit}>Submit</button>
+        <p>{this.state.message}</p>
       </div>
       )
   }

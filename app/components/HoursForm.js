@@ -9,10 +9,10 @@ var HoursForm = React.createClass({
 		var initialStates = {};
 		days_list.map(function(day) {
 			var hourObject = {};
-			hourObject["hourOpen_" + day] = 10;
-			hourObject["minOpen_" + day] = 1;
-			hourObject["hourClose_" + day] = 2;
-			hourObject["minClose_" + day] = 3;
+			hourObject["hourOpen_" + day] = 6;
+			hourObject["minOpen_" + day] = 0;
+			hourObject["hourClose_" + day] = 21;
+			hourObject["minClose_" + day] = 0;
 			Object.assign(initialStates, hourObject);
 			new_gym_hours.push({
 				day: day,
